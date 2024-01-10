@@ -1,8 +1,9 @@
 package com.example.Elearn.model;
 
-import jakarta.persistence.*;
-
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class User {
@@ -14,11 +15,24 @@ public class User {
     private String password;
     private String email;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserCourseProgress> enrolledCourses;
-
     public User(String username) {
+        // Boş constructor JPA gereksinimlerini karşılamak için
+    }
+
+    public User(String username, String password, String email) {
         this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    // Getter ve Setter metotları
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -44,6 +58,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
-
